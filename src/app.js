@@ -26,7 +26,7 @@ app.use("/", userRouter);
 connectDb()
   .then(() => {
     console.log("Database Connection Successful!!!");
-    app.listen(3000, () => {
+    app.listen(3000, "0.0.0.0", () => {
       console.log("Server listening on 3000!!!!");
     });
   })
