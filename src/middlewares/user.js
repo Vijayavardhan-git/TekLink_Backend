@@ -7,7 +7,7 @@ const userAuth = async (req, res, next) => {
     if (!token) {
       throw new Error("Please Login!!");
     }
-    const data = await jwt.verify(token, "Lens@123");
+    const data = await jwt.verify(token, process.env.JWT_SECRET);
     if (!data) {
       throw new Error("Invalid Token");
     }
