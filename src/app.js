@@ -9,6 +9,9 @@ const userRouter = require("./routes/user");
 const cors = require("cors");
 const cron = require("./utils/cronjob");
 const paymentRouter = require("./routes/payment");
+const http = require("http");
+const initializeSocket = require("./utils/socket");
+const chatRouter = require("./routes/chat");
 
 const app = express();
 
@@ -26,11 +29,15 @@ app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
 app.use("/", paymentRouter);
+app.use("/", chatRouter)
+
+const server = http.createServer(app);
+initializeSocket(server);
 
 connectDb()
   .then(() => {
     console.log("Database Connection Successful!!!");
-    app.listen(3000, "0.0.0.0", () => {
+    server.listen(3000, "0.0.0.0", () => {
       console.log("Server listening on 3000!!!!");
     });
   })
