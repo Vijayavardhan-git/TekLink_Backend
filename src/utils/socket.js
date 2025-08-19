@@ -20,7 +20,7 @@ const initializeSocket = (server) => {
   io.on("connection", (socket) => {
     socket.on("joinChat", ({ firstName, userId, targetUserId }) => {
       const roomId = getSecretRoomId(userId, targetUserId);
-      console.log(firstName + " joined Room : " + roomId);
+      // console.log(firstName + " joined Room : " + roomId);
       socket.join(roomId);
     });
 
@@ -30,7 +30,7 @@ const initializeSocket = (server) => {
         // Save messages to the database
         try {
           const roomId = getSecretRoomId(userId, targetUserId);
-          console.log(firstName + " " + text);
+          // console.log(firstName + " " + text);
 
           // TODO: Check if userId & targetUserId are friends
 
