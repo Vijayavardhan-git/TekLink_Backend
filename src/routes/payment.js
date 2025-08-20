@@ -49,7 +49,7 @@ paymentRouter.post("/payment/webhook", async (req, res) => {
   try {
     console.log("Webhook Called");
     const webhookSignature = req.get("X-Razorpay-Signature");
-    console.log("Webhook Signature", webhookSignature);
+    // console.log("Webhook Signature", webhookSignature);
     const isWebhookValid = validateWebhookSignature(
       JSON.stringify(req.body),
       webhookSignature,
@@ -78,7 +78,7 @@ paymentRouter.post("/payment/webhook", async (req, res) => {
 
 paymentRouter.get("/premium/verify", userAuth, async (req, res) => {
   const user = req.user.toJSON();
-  console.log(user);
+  // console.log(user);
   if (user.isPremium) {
     return res.json({ ...user });
   }
